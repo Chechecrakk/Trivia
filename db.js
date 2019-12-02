@@ -6,5 +6,5 @@ mongoose.connect('mongodb+srv://ezebarrague:QAZ11qaz@cluster0-eyqqu.mongodb.net/
     useNewUrlParser: true
 })
 
-   .then(db => console.log('Db is connected'))
+   .then(db => console.log('Base de datos conectada'))
    .catch(err => console.error(err));

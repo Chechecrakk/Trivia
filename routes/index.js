@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
 const passport = require('passport');
 
+const Note = require('../models/Note');
 
 
 router.get('/', (req, res, next) => {
@@ -35,19 +35,6 @@ router.post('/signin', passport.authenticate('local-signin', {
 }));
 
 
-router.get('/questionadd', async (req, res) => {
-  const questions = await Question.find();
-  res.render('questionadd', {
-    questions
-  });
-});
-
-router.post('/questionadd', async (req, res, next) => {
-  const questions = new Question(req.body);
-  await question.save();
-  res.redirect('/');
-});
-
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.redirect('/');
@@ -58,68 +45,27 @@ router.get('/profile', isAuthenticated, (req, res, next) =>{
   res.render('profile');
 });
 
-
-// preguntaas
-const QuestionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  answers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Answer' }]
+router.get('/questions.ejs', (req, res, next) => {
+  res.render('questions.ejs');
 });
 
-const Question = mongoose.model('Question', QuestionSchema);
-
-const AnswerSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  isRight: { type: Boolean, default: false },
-  question: { type: mongoose.Schema.Types.ObjectId, ref: 'Question' }
+router.get('/questionadd', (req, res, next) => {
+  res.render('questionadd');
 });
 
-const Answer = mongoose.model('Answer', AnswerSchema);
-
-router.post('/question', (req, res) => {
-  let question = new Question({
-    _id: new mongoose.Types.ObjectId(),
-    title: req.body.question
-  });
-  let answerA = new Answer({
-    title: req.body.answerA,
-    isRight: req.body.checkboxA,
-    question: question._id
-  });
-  let answerB = new Answer({
-    title: req.body.answerB,
-    isRight: req.body.checkboxB,
-    question: question._id
-  });
-  let answerC = new Answer({
-    title: req.body.answerC,
-    isRight: req.body.checkboxC,
-    question: question._id
-  });
-  let answerD = new Answer({
-    title: req.body.answerD,
-    isRight: req.body.checkboxD,
-    question: question._id
-  });
-  question.answers.push(answerA);
-  question.answers.push(answerB);
-  question.answers.push(answerC);
-  question.answers.push(answerD);
-  question.save(err => {
-    answerA.save();
-    answerB.save();
-    answerC.save();
-    answerD.save();
-    res.redirect('/');
-  });
+router.post('/questionadd', async (req, res, next) => {
+  const { question, answera, answerb, answerc, answerd }= req.body;
+  console.log(req.body);
+  const newNote = new Note({ question, answera, answerb, answerc, answerd});
+  await newNote.save();
+  res.redirect('/questions.ejs');
+  console.log(req.body);
 });
 
-router.get('/', (req, res) => {
-  Question.find().populate('answers').exec((err, questions) => {
-    res.render('index', { questions: questions, user: req.user });
-  });
+router.get('/questions.ejs', async (req, res, next) => {
+  const notes = await Note.find();
+  res.render('/questions.ejs', { notes });
 });
-
-
 
 function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
@@ -129,3 +75,4 @@ function isAuthenticated(req, res, next) {
 };
 
 module.exports = router;
+

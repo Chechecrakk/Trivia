@@ -25,8 +25,12 @@
       <ul class="navbar-nav  ml-auto">
         <%if (user) {%>
           <li class="nav-item">
+            <a class="nav-link" href="/questionadd">Agregar preguntas</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/logout">Salir</a>
           </li>
+         
 
 
           <% } else {%>
@@ -39,6 +43,7 @@
             <li class="nav-item">
               <a class="nav-link" href="/signup">Registrarse</a>
             </li>
+            
           <%  }%>
       </ul>
     </div>
