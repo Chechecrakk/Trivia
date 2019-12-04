@@ -16,7 +16,7 @@
   <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/" >Trivia</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -25,12 +25,20 @@
       <ul class="navbar-nav  ml-auto">
         <%if (user) {%>
           <li class="nav-item">
+              <a class="nav-link" href="/profile">Inicio</a>
+            </li>
+          <li class="nav-item">
             <a class="nav-link" href="/questionadd">Agregar preguntas</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Salir</a>
+              <a class="nav-link" href="/ejemplo">Ejemplo de trivia</a>
           </li>
-         
+          <li class="nav-item">
+            <a class="nav-link" href="/trivia">Tus preguntas</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/logout">Salir</a>
+            </li>
 
 
           <% } else {%>
@@ -38,11 +46,16 @@
               <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="/about">¿Que es una trivia?</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/signin">Ingresar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/signup">Registrarse</a>
             </li>
+            
+            
             
           <%  }%>
       </ul>

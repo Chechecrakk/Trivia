@@ -1,12 +1,35 @@
 body{
-background: #FDFC47;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #24FE41, #FDFC47);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #24FE41, #FDFC47); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
 }
 h1{
     text-align: center;
+    font-size: 45px;
 }
 h2{
     text-align: center;
+}
+h3{
+    font-size: 15px;
+}
+h4{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 35px;
+}
+h5{
+    text-shadow: 2px 2px 1px #bdc3c7;
+    text-align: center;
+}
+img{
+    width: 400px;
+    height: auto;
+    margin: auto;
+    display: block;
+}
+p{
+    font-family: Georgia;
+    color: gray;
+    font-size: 20px;
 }
